@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<head>
+ 
+<!---------------------- 
+ 
+page 03 honey @ wordbite
+ 
+ctrl+f search for {name} and replace that (including the curly brackets) with your url/username to get the ask box to work :)
+ 
+------------------------>
+ 
+<link rel="shortcut icon" href="{Favicon}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="alternate" type="application/rss+xml" href="{RSS}">
+<title>{title}</title>
+ 
+<!-- scripts -->
+<link href='https://fonts.googleapis.com/css?family=Sarabun|Muli|Karla|Fira+sans|Rubik' rel='stylesheet' type='text/css'>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.1/SmoothScroll.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="https://static.tumblr.com/iuw14ew/VSQma1786/jquery.style-my-tooltips.js"></script>
+
+<script>
+(function($){
+$(document).ready(function(){
+$("a[title]").style_my_tooltips({
+tip_follows_cursor:true,
+tip_delay_time:30,
+tip_fade_speed:300,
+attribute:"title"
+});
+});
+})(jQuery);
+
+const toggleBlogRoll = () => {
+    $('#blogroll').toggle();
+    $('#blogroll-svg').css(
+        'transform',
+        () => {
+            if ($('#blogroll').css('display') == 'none') { 
+                return 'rotate(0deg)';
+            } else { 
+                return 'rotate(180deg)';
+            }
+        }
+    );
+}
+</script>
+ 
+<style type="text/css">
+
+/* tumblr controls */
+.iframe-controls--phone-mobile,
+.tmblr-iframe--app-cta-button {
+        visibility: hidden !important;
+        display: none !important;
+}
+ 
+/* scrollbar */
+::-webkit-scrollbar { width:12px; height:12px; background-color:#fff; }
+::-webkit-scrollbar-track { background-clip:padding-box; border-radius:6px; background-color:#f1f1f1; border:4px solid transparent }
+::-webkit-scrollbar-thumb { background-clip:padding-box; border-radius:6px; background-color:#c1c1c1; border:4px solid transparent; }
+
+/* selection */
+::-wewbkit-selection { background:#eee; }
+::-moz-selection { background:#eee; }
+::selection { background:#eee; }
+
+/* tooltips */
+#s-m-t-tooltip{
+    position:absolute;
+    margin:13px;
+    max-width:250px;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+    line-height:1em;
+    z-index:999;
+    padding:9px;
+    border-radius:3px;
+    background:#141414;
+    color:#bababa;
+    font-weight:700;
+    letter-spacing:1px;
+    font-size:.7em;
+    font-family:'Karla', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+  }
+
+html {
+    font-size:13px;
+}
+ 
+body { 
+    font-family:'Rubik', sans-serif;
+    color:#525252;
+    line-height:180%;
+    margin:0;
+    -moz-osx-font-smoothing:grayscale;
+    -webkit-font-smoothing:antialiased;
+    font-smoothing:antialiased;
+}
+
+a { color:#9d9d9d; text-decoration:none; cursor:help; }
+a:hover { color:#D7D7D7; cursor:help; }
+
+h1 { font-family:'Muli',sans-serif; font-size:0.9em; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#000; margin-top:25px; }
+
+hr { margin:50px auto; border:0; -moz-box-sizing:content-box; box-sizing:content-box; width:100%; height:1px; background-color:#eee; }
+
+.title { font-size:1.2em; font-family:'Muli',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; text-align:center; }
+.title a { color:#000; }
+.title a:hover { color:#d7d7d7; }
+
+.about { background:#f8f8f8; text-align:center; padding:25px; margin:30px 0; }
+
+.links { font-family:'Sarabun', sans-serif; }
+.links span { display:inline-block; }
+
+.ask-box { margin-top:50px; }
+
+
+.blogroll-div {
+    display: flex;
+    align-items: center;
+}
+
+.blogroll-title { font-family:'Muli',sans-serif; font-size:0.9em; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#000; margin-top:25px; margin-top:50px; user-select: none;}
+
+.blogroll-svg {
+    width:30px;
+    height:30px;
+    fill:#000;
+    margin-top:50px;
+}
+
+.blogroll-wrap { 
+    margin:10px 0;
+    width:100%; 
+    display:none;
+}
+
+.blogroll-entry-wrap { 
+    display:inline-block; 
+    width:200px;
+    height:30px;
+    margin-right:-3px;
+    border-collapse: collapse;
+    cursor:help;
+}
+
+.blogroll-entry {
+    display : flex;
+    align-items : center;
+    padding:6px;
+    background:#f8f8f8;
+}
+.blogroll-entry a {
+    padding-left:15px;
+}
+.blogroll-entry img { border-radius:50%; }
+.blogroll-entry:hover { background:#1a1a1a; }
+.blogroll-entry:hover a { color:#D7D7D7!important; }
+
+.credit { z-index:999999; bottom:24px; position:fixed; right:24px; line-height:100%; }
+.credit a { font-size:2em; color:#000; border:none; }
+.credit a:after { content:' \263B'; }
+
+@media only screen and (max-width: 600px) {
+
+    .container {
+        width:85vw;
+        margin:50px auto;
+    }
+    
+    .links span {
+        width:49.5%;
+    }
+    
+    .blogroll-entry-wrap {
+        width:85vw;
+    }
+    
+    .blogroll-entry-wrap .blogroll-entry {
+        margin:10px 0;
+    }
+
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1023px) {
+
+    .container {
+        width:500px;
+        margin:150px auto;
+    }
+    
+    .links span {
+        width:32%;
+    }
+    
+    .blogroll-entry-wrap {
+        width:250px;
+    }
+    
+    .blogroll-entry-wrap:nth-child(2n+1) .blogroll-entry {
+        margin:10px 10px 10px 0;
+    }
+    
+}
+
+@media only screen and (min-width: 1024px) {
+
+    .container {
+        width:600px;
+        margin:150px auto;
+    }
+    
+    .links span {
+        width:24.5%;
+    }
+    
+    .blogroll-entry-wrap:nth-child(3n+2) .blogroll-entry {
+        margin:10px;
+    }
+    
+    .blogroll-entry-wrap:nth-child(3n+1) .blogroll-entry {
+        margin-top:10px;
+    }
+
+}
+ 
+</style>
+</head>
+<body onload="">
+
+<div class="container">
+
+<div class="title">
+<a href="/" title="back to blog">navigation</a> <!-- header title -->
+</div>
+
+<div class="about">
+<!-- start about text -->
+This is where you'll put your text. Here is how it will look to use <b>bold</b>, <i>italics</i> and <a>links</a>. The box will automatically size to your text so you can make it as long or short as you want. Let me know if you have any problems!
+<!-- end about text -->
+</div>
+
+<hr>
+
+<div class="links">
+<h1>links</h1> <!-- section title -->
+<!-- start links section -->
+<span><a href="#">orange</a></span>
+<span><a href="#">lime</a></span>
+<span><a href="#">pineapple</a></span>
+<span><a href="#">peach</a></span>
+<span><a href="#">kiwi</a></span>
+<span><a href="#">cherry</a></span>
+<span><a href="#">raspberry</a></span>
+<span><a href="#">plum</a></span>
+<span><a href="#">strawberry</a></span>
+<span><a href="#">mango</a></span>
+<span><a href="#">watermelon</a></span>
+<span><a href="#">papaya</a></span>
+<!-- end links section -->
+</div>
+
+<div class="ask-box"><iframe frameborder="0" height="190" id="ask_form" scrolling="no" src="http://www.tumblr.com/ask_form/{name}.tumblr.com" width="100%" style="background-color: transparent; overflow: hidden;"></iframe><!--[if IE]><script type="text/javascript">document.getElementById('ask_form').allowTransparency=true;</script><![endif]--></div>
+
+<div class="blogroll-div">
+<div class="blogroll-title" onclick="toggleBlogRoll();">following</div>
+
+<svg class="blogroll-svg" id="blogroll-svg" onclick="toggleBlogRoll();" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32"><g id="icomoon-ignore"></g><path d="M15.233 19.175l0.754 0.754 6.035-6.035-0.754-0.754-5.281 5.281-5.256-5.256-0.754 0.754 3.013 3.013z"></path>
+    </svg>
+</div>
+
+<div class="blogroll-wrap" id="blogroll">
+{block:Following}
+    {block:Followed}
+    <div class="blogroll-entry-wrap">
+        <div class="blogroll-entry" onclick="window.location = '{FollowedURL}';">
+            <img src="{FollowedPortraitURL-30}"/>
+            <a href="{FollowedURL}">{FollowedName}</a>
+        </div>
+    </div>
+    {/block:Followed}
+</div>
+
+</div> <!-- container div -->
+
+<div class="credit">
+<a href="https://wordbite.tumblr.com" title="@wordbite"></a>
+</div>
+ 
+</body>
+</html>
