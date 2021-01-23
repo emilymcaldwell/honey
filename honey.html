@@ -5,7 +5,7 @@
  
 page 03 honey @ wordbite
  
-ctrl+f search for {name} and replace that (including the curly brackets) with your url/username to get the ask box to work :)
+*note* ctrl+f search for {name} and replace that (including the curly brackets) with your url/username to get the ask box to work :)
  
 ------------------------>
  
@@ -16,6 +16,7 @@ ctrl+f search for {name} and replace that (including the curly brackets) with yo
  
 <!-- scripts -->
 <link href='https://fonts.googleapis.com/css?family=Sarabun|Muli|Karla|Fira+sans|Rubik' rel='stylesheet' type='text/css'>
+<link href='https://static.tumblr.com/8pnyeus/sXxofi7lt/outicons.css' rel='stylesheet' type='text/css'>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.1/SmoothScroll.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="https://static.tumblr.com/iuw14ew/VSQma1786/jquery.style-my-tooltips.js"></script>
@@ -32,19 +33,29 @@ attribute:"title"
 });
 })(jQuery);
 
-const toggleBlogRoll = () => {
-    $('#blogroll').toggle();
-    $('#blogroll-svg').css(
-        'transform',
-        () => {
-            if ($('#blogroll').css('display') == 'none') { 
-                return 'rotate(0deg)';
-            } else { 
-                return 'rotate(180deg)';
-            }
+$(document).ready(function(){
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > 100) {
+            $('.top').fadeIn();
+        } else {
+            $('.top').fadeOut();
         }
-    );
-}
+    });
+   
+    $('.top').click(function(){
+        $('html, body').animate({scrollTop : 0},800);
+        return false;
+    });
+   
+});
+
+
+$(document).ready(function(){
+    // Blogroll Grower/Shower ;-)
+    $('.blogroll-title').click(function(){
+       $(this).parent().toggleClass('blogroll-shown')
+    });
+});
 </script>
  
 <style type="text/css">
@@ -105,65 +116,100 @@ h1 { font-family:'Muli',sans-serif; font-size:0.9em; font-weight:700; letter-spa
 
 hr { margin:50px auto; border:0; -moz-box-sizing:content-box; box-sizing:content-box; width:100%; height:1px; background-color:#eee; }
 
-.title { font-size:1.2em; font-family:'Muli',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; text-align:center; }
-.title a { color:#000; }
-.title a:hover { color:#d7d7d7; }
+.title { font-size:1.1em; font-family:'Muli',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; text-align:center; color:#000; }
 
 .about { background:#f8f8f8; text-align:center; padding:25px; margin:30px 0; }
 
-.links { font-family:'Sarabun', sans-serif; }
+.links { font-family:'Rubik', sans-serif; }
 .links span { display:inline-block; }
 
 .ask-box { margin-top:50px; }
 
-
-.blogroll-div {
-    display: flex;
-    align-items: center;
+.blogroll-shown > .blogroll-body {
+    display: block;
+}
+.blogroll-shown > .blogroll-title .oi {
+    transform:rotate(180deg);
 }
 
-.blogroll-title { font-family:'Muli',sans-serif; font-size:0.9em; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#000; margin-top:25px; margin-top:50px; user-select: none;}
+.blogroll-body {
+    display: none;
+    margin-top:25px;
+}
 
-.blogroll-svg {
-    width:30px;
-    height:30px;
-    fill:#000;
+.blogroll-title {
+    display:flex;
+    align-items:center;
+    font-family:'Muli',sans-serif; 
+    font-size:0.9em; 
+    font-weight:700; 
+    letter-spacing:1.5px; 
+    text-transform:uppercase; 
+    color:#000; 
     margin-top:50px;
 }
 
-.blogroll-wrap { 
-    margin:10px 0;
-    width:100%; 
-    display:none;
+.blogroll-title .oi {
+    /* default icon state should indicate collapsed blogroll */
+    font-size:18px;
+    margin-right:5px;
 }
 
-.blogroll-entry-wrap { 
-    display:inline-block; 
-    width:200px;
-    height:30px;
-    margin-right:-3px;
-    border-collapse: collapse;
-    cursor:help;
-}
-
-.blogroll-entry {
-    display : flex;
-    align-items : center;
+.following {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     padding:6px;
-    background:#f8f8f8;
 }
-.blogroll-entry a {
-    padding-left:15px;
-}
-.blogroll-entry img { border-radius:50%; }
-.blogroll-entry:hover { background:#1a1a1a; }
-.blogroll-entry:hover a { color:#D7D7D7!important; }
 
-.credit { bottom:24px; position:fixed; right:24px; line-height:0%; }
-.credit svg { width:22px; height:22px; }
+.following-wrap img {
+    border-radius:50%;
+}
+
+.following-wrap a {
+    margin-left: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.following-wrap:hover { background:#1a1a1a; }
+.following-wrap:hover a { color:#D7D7D7!important; }
+
+/* CREDIT */
+
+.credit .oi, .back .oi, .top .oi { font-size:20px; margin:0; color:#000; }
+
+.credit { 
+    position:fixed; 
+    bottom:15px; 
+    right:15px; 
+    line-height:1em; 
+    padding:5px; 
+    background:#fff; 
+}
+
+.top {
+    position:fixed;
+	left:15px;
+	bottom:15px;
+	display:none;
+	line-height:1em;
+	padding:5px; 
+    background:#fff; 
+}
+
+.back {
+    position:fixed;
+    top:15px;
+    left:15px;
+    line-height:1em; 
+    padding:5px; 
+    background:#fff;
+}
 
 @media only screen and (max-width: 600px) {
-
+    
     .container {
         width:85vw;
         margin:50px auto;
@@ -173,18 +219,17 @@ hr { margin:50px auto; border:0; -moz-box-sizing:content-box; box-sizing:content
         width:49.5%;
     }
     
-    .blogroll-entry-wrap {
-        width:85vw;
+    .following-wrap {
+        display:inline-block;
+        width:100%;
+        background:#f8f8f8;
+        margin:0 0 10px 0;
     }
     
-    .blogroll-entry-wrap .blogroll-entry {
-        margin:10px 0;
-    }
-
 }
 
 @media only screen and (min-width: 601px) and (max-width: 1023px) {
-
+    
     .container {
         width:500px;
         margin:150px auto;
@@ -194,18 +239,21 @@ hr { margin:50px auto; border:0; -moz-box-sizing:content-box; box-sizing:content
         width:32%;
     }
     
-    .blogroll-entry-wrap {
-        width:250px;
+    .following-wrap {
+        display:inline-block;
+        width:245px;
+        background:#f8f8f8;
+        margin:0 10px 10px 0;
     }
     
-    .blogroll-entry-wrap:nth-child(2n+1) .blogroll-entry {
-        margin:10px 10px 10px 0;
+    .following-wrap:nth-child(2n) {
+        margin-right:0;
     }
     
 }
 
 @media only screen and (min-width: 1024px) {
-
+    
     .container {
         width:600px;
         margin:150px auto;
@@ -215,12 +263,15 @@ hr { margin:50px auto; border:0; -moz-box-sizing:content-box; box-sizing:content
         width:24.5%;
     }
     
-    .blogroll-entry-wrap:nth-child(3n+2) .blogroll-entry {
-        margin:10px;
+    .following-wrap {
+        display:inline-block;
+        width:193px;
+        background:#f8f8f8;
+        margin:0 10px 10px 0;
     }
     
-    .blogroll-entry-wrap:nth-child(3n+1) .blogroll-entry {
-        margin-top:10px;
+    .following-wrap:nth-child(3n) {
+        margin-right:0;
     }
 
 }
@@ -232,7 +283,7 @@ hr { margin:50px auto; border:0; -moz-box-sizing:content-box; box-sizing:content
 <div class="container">
 
 <div class="title">
-<a href="/" title="back to blog">navigation</a> <!-- header title -->
+    navigation <!-- header title -->
 </div>
 
 <div class="about">
@@ -263,30 +314,27 @@ This is where you'll put your text. Here is how it will look to use <b>bold</b>,
 
 <div class="ask-box"><iframe frameborder="0" height="190" id="ask_form" scrolling="no" src="http://www.tumblr.com/ask_form/{name}.tumblr.com" width="100%" style="background-color: transparent; overflow: hidden;"></iframe><!--[if IE]><script type="text/javascript">document.getElementById('ask_form').allowTransparency=true;</script><![endif]--></div>
 
-<div class="blogroll-div">
-<div class="blogroll-title" onclick="toggleBlogRoll();">following</div>
-
-<svg class="blogroll-svg" id="blogroll-svg" onclick="toggleBlogRoll();" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32"><g id="icomoon-ignore"></g><path d="M15.233 19.175l0.754 0.754 6.035-6.035-0.754-0.754-5.281 5.281-5.256-5.256-0.754 0.754 3.013 3.013z"></path>
-    </svg>
-</div>
-
-<div class="blogroll-wrap" id="blogroll">
-{block:Following}
-    {block:Followed}
-    <div class="blogroll-entry-wrap">
-        <div class="blogroll-entry" onclick="window.location = '{FollowedURL}';">
-            <img src="{FollowedPortraitURL-30}"/>
-            <a href="{FollowedURL}">{FollowedName}</a>
-        </div>
+<div class="blogroll">
+    <div class="blogroll-title">
+        <i class="oi oi-chevron-down"></i> following
     </div>
-    {/block:Followed}
+    {block:Following}<div class="blogroll-body">
+        {block:Followed}<div class="following-wrap">
+            <div class="following">
+                <img src="{FollowedPortraitURL-30}"/>
+            <a href="{FollowedURL}">{FollowedName}</a>
+            </div>
+        </div>{/block:Followed}
+    </div>{/block:Following}
 </div>
 
 </div> <!-- container div -->
 
-<div class="credit">
-<a href="https://wordbite.tumblr.com" title="@wordbite"><a href="https://wordbite.tumblr.com" title="honey @ wordbite"><svg id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><g><path d="m256 30c4.142 0 7.5-3.358 7.5-7.5v-15c0-4.142-3.358-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v15c0 4.142 3.358 7.5 7.5 7.5z"/><path d="m208.255 37.303c2.071 3.587 6.659 4.816 10.245 2.745 3.587-2.071 4.816-6.658 2.745-10.245l-7.5-12.99c-2.071-3.587-6.659-4.816-10.245-2.745-3.587 2.071-4.816 6.658-2.745 10.245z"/><path d="m293.5 40.048c3.586 2.071 8.174.842 10.245-2.745l7.5-12.99c2.071-3.587.842-8.174-2.745-10.245-3.586-2.071-8.174-.842-10.245 2.745l-7.5 12.99c-2.071 3.587-.842 8.174 2.745 10.245z"/><path d="m301 422c-18.428 0-33.782-13.365-36.908-30.908 2.905-.635 5.746-1.608 8.448-2.936l24.268-11.925c2.566-1.261 4.192-3.872 4.192-6.731 0-15.164-12.336-27.5-27.5-27.5h-35c-15.164 0-27.5 12.336-27.5 27.5 0 2.859 1.626 5.47 4.192 6.731l24.268 11.925c2.703 1.328 5.543 2.301 8.448 2.936-3.126 17.543-18.48 30.908-36.908 30.908-4.142 0-7.5 3.358-7.5 7.5s3.358 7.5 7.5 7.5c19.074 0 35.805-10.226 45-25.481 9.195 15.255 25.926 25.481 45 25.481 4.142 0 7.5-3.358 7.5-7.5s-3.358-7.5-7.5-7.5zm-54.925-47.307-19.314-9.491c1.756-4.782 6.355-8.203 11.739-8.203h35c5.383 0 9.983 3.42 11.739 8.203l-19.314 9.491c-6.215 3.055-13.635 3.054-19.85 0z"/><path d="m121 254c-20.678 0-37.5 16.822-37.5 37.5s16.822 37.5 37.5 37.5h60c4.142 0 7.5-3.358 7.5-7.5 0-37.22-30.28-67.5-67.5-67.5zm0 60c-12.407 0-22.5-10.093-22.5-22.5s10.093-22.5 22.5-22.5c26.402 0 48.315 19.591 51.966 45z"/><path d="m323.5 321.5c0 4.142 3.358 7.5 7.5 7.5h60c20.678 0 37.5-16.822 37.5-37.5s-16.822-37.5-37.5-37.5c-37.22 0-67.5 30.28-67.5 67.5zm90-30c0 12.407-10.093 22.5-22.5 22.5h-51.966c3.65-25.409 25.563-45 51.966-45 12.407 0 22.5 10.093 22.5 22.5z"/><path d="m226 239c4.142 0 7.5-3.358 7.5-7.5v-15c0-4.142-3.358-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v15c0 4.142 3.358 7.5 7.5 7.5z"/><path d="m286 239c4.142 0 7.5-3.358 7.5-7.5v-15c0-4.142-3.358-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v15c0 4.142 3.358 7.5 7.5 7.5z"/><path d="m256 284c4.142 0 7.5-3.358 7.5-7.5v-15c0-4.142-3.358-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v15c0 4.142 3.358 7.5 7.5 7.5z"/><path d="m474.5 0c-8.955 0-17.629 3.217-24.423 9.057l-82.535 70.909c-14.039-3.297-28.499-4.966-43.042-4.966h-137c-14.545 0-29.005 1.669-43.042 4.966l-82.533-70.909c-6.796-5.84-15.47-9.057-24.425-9.057-20.678 0-37.5 16.822-37.5 37.5v257c0 38.513 11.591 75.516 33.52 107.01 21.424 30.77 51.146 54.199 85.949 67.757l84.828 33.056c16.486 6.421 33.881 9.677 51.703 9.677s35.217-3.256 51.704-9.678l84.826-33.056c34.805-13.558 64.526-36.987 85.951-67.757 21.928-31.493 33.519-68.496 33.519-107.009v-257c0-20.678-16.822-37.5-37.5-37.5zm-459.5 114.169c5.473 13.353 12.41 26.153 20.753 38.227-2.068 2.847-4.081 5.741-5.995 8.711-5.724 8.887-10.649 18.195-14.758 27.823zm482 74.761c-4.109-9.627-9.033-18.935-14.758-27.822-1.914-2.971-3.927-5.864-5.995-8.712 8.342-12.073 15.28-24.874 20.753-38.227zm-30.514-48.893c-16.954-19.655-37.825-35.637-61.409-46.878-3.74-1.782-8.215-.195-9.998 3.543-1.782 3.739-.196 8.215 3.543 9.997 59.763 28.486 98.378 89.641 98.378 155.801v32c0 71.667-43.144 134.78-109.916 160.79l-84.826 33.055c-14.742 5.743-30.306 8.655-46.258 8.655s-31.516-2.912-46.257-8.654l-84.828-33.056c-66.771-26.01-109.915-89.123-109.915-160.79v-32c0-66.16 38.615-127.315 98.377-155.801 3.739-1.782 5.326-6.258 3.543-9.997s-6.257-5.324-9.998-3.543c-23.584 11.242-44.455 27.224-61.409 46.878-19.989-30.493-30.513-65.735-30.513-102.537 0-12.407 10.093-22.5 22.5-22.5 5.369 0 10.571 1.93 14.648 5.434l85.464 73.426c1.86 1.597 4.382 2.186 6.757 1.574 14.009-3.606 28.52-5.434 43.131-5.434h137c14.609 0 29.12 1.828 43.131 5.434 2.374.61 4.897.022 6.757-1.574l85.465-73.427c4.076-3.503 9.278-5.433 14.647-5.433 12.407 0 22.5 10.093 22.5 22.5 0 36.802-10.524 72.044-30.514 102.537z"/></g></svg></a></a>
-</div>
+<div class="back"><a href="/" title="back to blog"><i class="oi oi-arrow-left"></i></a></div>
+
+<a href="#" title="back to top" class="top"><i class="oi oi-arrow-up"></i></a>
+
+<div class="credit"><a href="https://wordbite.tumblr.com" title="honey @ wordbite"><i class="oi oi-pill"></i></a></div>
  
 </body>
 </html>
