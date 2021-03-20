@@ -16,7 +16,7 @@ page 03 honey @ wordbite
  
 <!-- scripts -->
 <link href='https://fonts.googleapis.com/css?family=Sarabun|Muli|Karla|Fira+sans|Rubik' rel='stylesheet' type='text/css'>
-<link href='https://static.tumblr.com/8pnyeus/sXxofi7lt/outicons.css' rel='stylesheet' type='text/css'>
+<link href='https://static.tumblr.com/m2fiocp/1fbqq9vgi/outicons.css' rel='stylesheet' type='text/css'>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.1/SmoothScroll.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="https://static.tumblr.com/iuw14ew/VSQma1786/jquery.style-my-tooltips.js"></script>
@@ -181,34 +181,18 @@ hr { margin:50px auto; border:0; -moz-box-sizing:content-box; box-sizing:content
 
 /* CREDIT */
 
-.credit .oi, .back .oi, .top .oi { font-size:20px; margin:0; color:#000; }
+.credit .oi, .back .oi, .top .oi { font-size:20px; margin:0; }
 
-.credit { 
+.back { left:1em; top:1em; }
+.top { left:1em; bottom:1em; display:none; }
+.credit { bottom:1em; right:1em; }
+
+.back, .top, .credit { 
     position:fixed; 
-    bottom:15px; 
-    right:15px; 
-    line-height:1em; 
-    padding:5px; 
-    background:#fff; 
-}
-
-.top {
-    position:fixed;
-	left:15px;
-	bottom:15px;
-	display:none;
-	line-height:1em;
-	padding:5px; 
-    background:#fff; 
-}
-
-.back {
-    position:fixed;
-    top:15px;
-    left:15px;
-    line-height:1em; 
-    padding:5px; 
-    background:#fff;
+    line-height:1em;
+    padding:4px;
+    background-color:#fff;
+    border-radius:3px;
 }
 
 @media only screen and (max-width: 600px) {
